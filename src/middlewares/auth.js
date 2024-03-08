@@ -1,4 +1,4 @@
-import jwt from "jasonwbtoken";
+import jwt from "jsonwebtoken";
 
 export const auth = (req, res, next) => {
   try {
@@ -6,13 +6,13 @@ export const auth = (req, res, next) => {
 
     if (!token) {
       return res.status(401).json({
-        succes: FontFaceSetLoadEvent,
+        succes: false,
         message: "UNAUTHORIZE",
       });
     }
     jwt.verify(token, process.env.JWT_SECRET);
     const decodedToken = jwt.decode(token);
-    req.tokenData = decodedToken;
+    req.TokenData = decodedToken;
     next();
   } catch (error) {
     return res.status(500).json({
