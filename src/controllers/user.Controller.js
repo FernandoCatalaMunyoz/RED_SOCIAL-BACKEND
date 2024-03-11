@@ -57,6 +57,15 @@ export const updateProfile = async (req, res) => {
       },
       { new: true }
     );
+    const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+    if (email) {
+      if (!validEmail.test(email)) {
+        return res.status(400).json({
+          success: false,
+          message: "format email invalid",
+        });
+      }
+    }
 
     res.status(200).json({
       succes: true,
