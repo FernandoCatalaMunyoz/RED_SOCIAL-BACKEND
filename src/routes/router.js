@@ -8,7 +8,8 @@ const router = Router();
 router.use("/auth", authRouter);
 router.use("/users", userRouter);
 router.use("/post", postRouter);
-app.use("/api/healthy", (req, res) => {
+
+app.use("/healthy", (req, res) => {
   res.status(200).json({
     succes: true,
     message: "Server is healthy",
