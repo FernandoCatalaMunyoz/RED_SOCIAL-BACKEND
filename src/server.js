@@ -10,7 +10,12 @@ const PORT = process.env.PORT || 4001;
 
 //RUTA QUE EMVIA A ROUTES.JS
 app.use("/api", router); // /api/auth prefijo que es igual en todas las rutas, en este caso de authController
-
+app.use("/healthy", (req, res) => {
+  res.status(200).json({
+    succes: true,
+    message: "Server is healthy",
+  });
+});
 //CONEXION BASE DE DATOS
 dbConection()
   .then(() => {
