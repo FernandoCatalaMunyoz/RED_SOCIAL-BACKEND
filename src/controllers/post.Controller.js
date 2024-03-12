@@ -1,6 +1,6 @@
 import Post from "../models/Post.js";
 
-// funcion crear post
+//Funcion crear post
 export const createPost = async (req, res) => {
   try {
     const description = req.body.description;
@@ -25,7 +25,7 @@ export const createPost = async (req, res) => {
   }
 };
 
-// funcion borrar post por id
+//Funcion borrar post por id
 
 export const deletePostById = async (req, res) => {
   try {
@@ -46,6 +46,7 @@ export const deletePostById = async (req, res) => {
   }
 };
 
+//Funcion actualizar Post por Id
 export const updatePostById = async (req, res) => {
   try {
     const description = req.body.description;
@@ -73,6 +74,7 @@ export const updatePostById = async (req, res) => {
   }
 };
 
+//Funcion ver mis Posts
 export const getMyPosts = async (req, res) => {
   try {
     const userId = req.tokenData.userId;
@@ -93,6 +95,7 @@ export const getMyPosts = async (req, res) => {
   }
 };
 
+//Funcion ver todos los Posts
 export const getAllPosts = async (req, res) => {
   try {
     const getAllPosts = await Post.find().exec();
@@ -111,6 +114,7 @@ export const getAllPosts = async (req, res) => {
   }
 };
 
+// Funcion ver Post por Id
 export const getPostById = async (req, res) => {
   try {
     const postId = req.params.id;
@@ -126,6 +130,27 @@ export const getPostById = async (req, res) => {
     res.status(500).json({
       success: false,
       message: "Post cant be retrieved",
+      error: error,
+    });
+  }
+};
+// Funcion ver Post de un usuario
+export const getUserPosts = async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const posts = await Post.find({
+      ownerId: userId,
+    });
+
+    res.status(200).json({
+      success: true,
+      message: "Posts retrieved succesfully",
+      data: posts,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Posts cant be retrieved",
       error: error,
     });
   }
