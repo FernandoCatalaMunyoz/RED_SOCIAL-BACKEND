@@ -72,3 +72,23 @@ export const updatePostById = async (req, res) => {
     });
   }
 };
+
+export const getMyPosts = async (req, res) => {
+  try {
+    const userId = req.tokenData.userId;
+
+    const myPosts = await Post.find({ ownerId: userId }).exec();
+
+    res.status(200).json({
+      success: true,
+      message: "Post retrieved succesfully",
+      data: myPosts,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Post cant be retrieved",
+      error: error,
+    });
+  }
+};
