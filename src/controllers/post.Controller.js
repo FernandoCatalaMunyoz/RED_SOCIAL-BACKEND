@@ -81,8 +81,26 @@ export const getMyPosts = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      message: "Post retrieved succesfully",
+      message: "Posts retrieved succesfully",
       data: myPosts,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Post cant be retrieved",
+      error: error,
+    });
+  }
+};
+
+export const getAllPosts = async (req, res) => {
+  try {
+    const getAllPosts = await Post.find().exec();
+
+    res.status(200).json({
+      success: true,
+      message: "Posts retrieved succesfully",
+      data: getAllPosts,
     });
   } catch (error) {
     res.status(500).json({
