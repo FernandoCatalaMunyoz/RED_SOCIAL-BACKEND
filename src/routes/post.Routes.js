@@ -4,6 +4,7 @@ import {
   deletePostById,
   getAllPosts,
   getMyPosts,
+  getPostById,
   updatePostById,
 } from "../controllers/post.Controller.js";
 import { auth } from "../middlewares/auth.js";
@@ -15,5 +16,6 @@ postRouter.delete("/:id", deletePostById);
 postRouter.put("/:id", updatePostById);
 postRouter.get("/own", auth, getMyPosts);
 postRouter.get("/", auth, isSuperAdmin, getAllPosts);
+postRouter.get("/:id", auth, isSuperAdmin, getPostById);
 
 export default postRouter;

@@ -105,6 +105,26 @@ export const getAllPosts = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
+      message: "Posts cant be retrieved",
+      error: error,
+    });
+  }
+};
+
+export const getPostById = async (req, res) => {
+  try {
+    const postId = req.params.id;
+
+    const post = await Post.findById(postId).exec();
+
+    res.status(200).json({
+      success: true,
+      message: "Post retrieved succesfully",
+      data: post,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
       message: "Post cant be retrieved",
       error: error,
     });
