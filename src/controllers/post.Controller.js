@@ -1,4 +1,5 @@
 import Post from "../models/Post.js";
+import User from "../models/User.js";
 
 //Funcion crear post
 export const createPost = async (req, res) => {
@@ -29,13 +30,15 @@ export const createPost = async (req, res) => {
 
 export const deletePostById = async (req, res) => {
   try {
-    const postId = req.body.postId;
-    const deletePost = await Post.findByIdAndDelete(postId);
+    const userId = req.tokenData.userId;
+    const postId = req.params.id;
+
+    const deletedPost = await Post.findOneAndDelete({ postId, userId });
 
     res.status(200).json({
       success: true,
-      message: "Post deleted succesfully",
-      data: deletePost,
+      message: "Post deleted",
+      data: deletedPost,
     });
   } catch (error) {
     res.status(500).json({
@@ -45,34 +48,7 @@ export const deletePostById = async (req, res) => {
     });
   }
 };
-
 //Funcion actualizar Post por Id
-export const updatePostById = async (req, res) => {
-  try {
-    const description = req.body.description;
-    const postId = req.params.id;
-
-    const postUpdated = await Post.findByIdAndUpdate(
-      postId,
-      {
-        description: description,
-      },
-      { new: true }
-    );
-
-    res.status(200).json({
-      success: true,
-      message: "Post updated succesfully",
-      data: postUpdated,
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: "Post cant be updated",
-      error: error,
-    });
-  }
-};
 
 //Funcion ver mis Posts
 export const getMyPosts = async (req, res) => {
@@ -141,7 +117,13 @@ export const getUserPosts = async (req, res) => {
     const posts = await Post.find({
       ownerId: userId,
     });
-
+    if (!posts) {
+      res.status(400).json({
+        success: true,
+        message: "This user dont have posts",
+        data: posts,
+      });
+    }
     res.status(200).json({
       success: true,
       message: "Posts retrieved succesfully",

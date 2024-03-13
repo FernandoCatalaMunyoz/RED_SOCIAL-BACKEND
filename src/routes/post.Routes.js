@@ -6,15 +6,14 @@ import {
   getMyPosts,
   getPostById,
   getUserPosts,
-  updatePostById,
 } from "../controllers/post.Controller.js";
 import { auth } from "../middlewares/auth.js";
 import { isSuperAdmin } from "../middlewares/isSuperAdmin.js";
 const postRouter = Router();
 
 postRouter.post("/", auth, createPost);
-postRouter.delete("/:id", deletePostById);
-postRouter.put("/:id", updatePostById);
+postRouter.delete("/:id", auth, deletePostById);
+postRouter.put("/:id", auth);
 postRouter.get("/own", auth, getMyPosts);
 postRouter.get("/", auth, isSuperAdmin, getAllPosts);
 postRouter.get("/:id", auth, isSuperAdmin, getPostById);
