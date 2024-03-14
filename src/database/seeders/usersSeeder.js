@@ -1,7 +1,6 @@
 import "dotenv/config";
 import { dbConection, dbDisconection } from "../db.js";
 import User from "../../models/User.js";
-import { faker } from "@faker-js/faker";
 
 import bcrypt from "bcrypt";
 
@@ -28,19 +27,6 @@ const userSeedDatabase = async () => {
     super_admin.password = bcrypt.hashSync("123456", 8);
     super_admin.role = "super_admin";
     await super_admin.save();
-
-    const generateFakeUser = () => {
-      const user = new User();
-      user.name = faker.person.fullName();
-      user.email = faker.internet.email();
-      user.password = bcrypt.hashSync("123456", 8);
-      user.role = "user";
-
-      return user;
-    };
-
-    const fakeUsers = Array.from({ length: 15 }, generateFakeUser);
-    await User.save(fakeUsers);
   } catch (error) {
     console.log(error);
   } finally {

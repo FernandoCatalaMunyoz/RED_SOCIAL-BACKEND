@@ -1,5 +1,4 @@
 import Post from "../models/Post.js";
-import User from "../models/User.js";
 
 //Funcion crear post
 export const createPost = async (req, res) => {
@@ -38,6 +37,13 @@ export const deletePostById = async (req, res) => {
       return res.status(404).json({
         succes: false,
         message: "Post not found",
+      });
+    }
+
+    if (findPost.ownerId != userId) {
+      return res.status(400).json({
+        succes: false,
+        message: "This post is not yours",
       });
     }
 
