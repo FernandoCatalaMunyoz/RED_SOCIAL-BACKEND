@@ -21,6 +21,6 @@ postRouter.get("/", auth, isSuperAdmin, getAllPosts);
 postRouter.get("/:id", auth, isSuperAdmin, getPostById);
 postRouter.get("/user/:id", getUserPosts);
 postRouter.put("/:id", auth, updatePostById);
-postRouter.put("/like/:id", likeUnlike);
+postRouter.put("/like/:id", auth, likeUnlike);
 
 export default postRouter;

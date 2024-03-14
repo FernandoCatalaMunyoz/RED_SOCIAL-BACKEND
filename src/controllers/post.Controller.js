@@ -190,10 +190,36 @@ export const getUserPosts = async (req, res) => {
 
 export const likeUnlike = async (req, res) => {
   try {
-    res.status(200).json({
-      succes: true,
-      message: "Like done",
-    });
+    const userId = req.tokenData.userId;
+    const postId = req.params.id;
+
+    const post = await Post.findById(postId).exec();
+    if (!post) {
+      return res.status(404).json({
+        succes: false,
+        message: "Post no encontrado",
+      });
+    }
+
+    const alreadyLiked = post.likes.includes(userId);
+
+    if (alreadyLiked) {
+      post.likes = post.likes.filter((like) => like.toString() !== userId);
+      await post.save();
+      return res.status(200).json({
+        succes: true,
+        message: "Like eliminado",
+        data: post,
+      });
+    } else {
+      post.likes.push(String(userId));
+      await post.save();
+      return res.status(200).json({
+        succes: true,
+        message: "Like agregado",
+        data: post,
+      });
+    }
   } catch (error) {
     res.status(500).json({
       succes: false,
