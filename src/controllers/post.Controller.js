@@ -61,11 +61,33 @@ export const deletePostById = async (req, res) => {
 };
 //Funcion actualizar Post por Id
 
-export const updatePostById = (req, res) => {
+export const updatePostById = async (req, res) => {
   try {
+    const userId = req.tokenData.userid;
+    const postId = req.params.id;
+    const newDescription = req.body.description;
+
+    const findPost = await Post.findById({ _id: postId });
+    if (!findPost) {
+      return res.status(404).json({
+        succes: false,
+        message: "Post not found",
+      });
+    }
+
+    const updatedPost = await Post.findByIdAndUpdate(
+      {
+        ownerId: userId,
+        _id: postId,
+      },
+      { description: newDescription },
+      { new: true }
+    );
+
     res.status(200).json({
       success: true,
       message: "Post updated",
+      data: updatedPost,
     });
   } catch (error) {
     res.status(500).json({

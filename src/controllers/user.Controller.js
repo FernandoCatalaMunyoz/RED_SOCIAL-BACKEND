@@ -47,7 +47,6 @@ export const updateProfile = async (req, res) => {
     const name = req.body.name;
     const email = req.body.email;
     const userId = req.tokenData.userId;
-    const filter = { _id: userId };
 
     const userUpdated = await User.findByIdAndUpdate(
       userId,

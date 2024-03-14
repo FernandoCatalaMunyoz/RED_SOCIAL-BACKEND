@@ -19,6 +19,6 @@ postRouter.get("/own", auth, getMyPosts);
 postRouter.get("/", auth, isSuperAdmin, getAllPosts);
 postRouter.get("/:id", auth, isSuperAdmin, getPostById);
 postRouter.get("/user/:id", getUserPosts);
-postRouter.put("/", updatePostById);
+postRouter.put("/:id", auth, updatePostById);
 
 export default postRouter;
