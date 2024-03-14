@@ -3,6 +3,7 @@ import User from "../models/User.js";
 
 import jwt from "jsonwebtoken";
 
+//Funcion Register
 export const register = async (req, res) => {
   try {
     const name = req.body.name;
@@ -24,7 +25,7 @@ export const register = async (req, res) => {
       });
     }
     const passwordEncrypted = bcrypt.hashSync(password, 5);
-    //ESTO ES LO DIFERENTE
+
     const newUser = await User.create({
       name: name,
       email: email,
@@ -45,6 +46,7 @@ export const register = async (req, res) => {
   }
 };
 
+//Funcion Login
 export const login = async (req, res) => {
   try {
     const email = req.body.email;

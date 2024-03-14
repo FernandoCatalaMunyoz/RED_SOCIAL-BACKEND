@@ -185,3 +185,19 @@ export const getUserPosts = async (req, res) => {
     });
   }
 };
+
+//Funcion day quitar likes
+
+export const likeUnlike = async (req, res) => {
+  try {
+    res.status(200).json({
+      succes: true,
+      message: "Like done",
+    });
+  } catch (error) {
+    res.status(500).json({
+      succes: false,
+      message: "Cant give a like",
+    });
+  }
+};

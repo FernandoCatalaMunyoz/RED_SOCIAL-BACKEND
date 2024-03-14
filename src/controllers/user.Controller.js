@@ -40,7 +40,7 @@ export const getProfile = async (req, res) => {
   }
 };
 
-// modificar perfil
+//Funcion modificar perfil
 
 export const updateProfile = async (req, res) => {
   try {
