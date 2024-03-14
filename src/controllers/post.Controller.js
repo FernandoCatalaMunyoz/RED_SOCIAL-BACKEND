@@ -61,6 +61,21 @@ export const deletePostById = async (req, res) => {
 };
 //Funcion actualizar Post por Id
 
+export const updatePostById = (req, res) => {
+  try {
+    res.status(200).json({
+      success: true,
+      message: "Post updated",
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Post cant be updated",
+      error: error,
+    });
+  }
+};
+
 //Funcion ver mis Posts
 export const getMyPosts = async (req, res) => {
   try {
