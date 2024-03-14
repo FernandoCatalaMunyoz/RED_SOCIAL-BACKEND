@@ -69,18 +69,24 @@ export const deletePostById = async (req, res) => {
 
 export const updatePostById = async (req, res) => {
   try {
-    const userId = req.tokenData.userid;
+    const userId = req.tokenData.userId;
     const postId = req.params.id;
     const newDescription = req.body.description;
 
     const findPost = await Post.findById({ _id: postId });
+
     if (!findPost) {
       return res.status(404).json({
         succes: false,
         message: "Post not found",
       });
     }
-
+    if (findPost.ownerId != userId) {
+      return res.status(400).json({
+        succes: false,
+        message: "this post is not yours",
+      });
+    }
     const updatedPost = await Post.findByIdAndUpdate(
       {
         ownerId: userId,
