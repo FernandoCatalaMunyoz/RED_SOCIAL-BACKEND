@@ -15,7 +15,6 @@ const userSeedDatabase = async () => {
     user.role = "user";
     await user.save();
 
-    await dbConection();
     const admin = new User();
     admin.name = "admin";
     admin.email = "admin@admin.com";
@@ -23,7 +22,6 @@ const userSeedDatabase = async () => {
     admin.role = "admin";
     await admin.save();
 
-    await dbConection();
     const super_admin = new User();
     super_admin.name = "super_admin";
     super_admin.email = "super_admin@super_admin.com";
@@ -31,7 +29,6 @@ const userSeedDatabase = async () => {
     super_admin.role = "super_admin";
     await super_admin.save();
 
-    await dbConection();
     const generateFakeUser = () => {
       const user = new User();
       user.name = faker.person.fullName();
@@ -45,6 +42,7 @@ const userSeedDatabase = async () => {
     const fakeUsers = Array.from({ length: 15 }, generateFakeUser);
     await User.save(fakeUsers);
   } catch (error) {
+    console.log(error);
   } finally {
     await dbDisconection();
   }

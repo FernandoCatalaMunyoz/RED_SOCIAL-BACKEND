@@ -33,7 +33,18 @@ export const deletePostById = async (req, res) => {
     const userId = req.tokenData.userId;
     const postId = req.params.id;
 
-    const deletedPost = await Post.findOneAndDelete({ postId, userId });
+    const findPost = await Post.findById({ _id: postId });
+    if (!findPost) {
+      return res.status(404).json({
+        succes: false,
+        message: "Post not found",
+      });
+    }
+
+    const deletedPost = await Post.findOneAndDelete({
+      ownerId: userId,
+      _id: postId,
+    });
 
     res.status(200).json({
       success: true,

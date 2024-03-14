@@ -7,8 +7,8 @@ const PostSchema = new Schema(
       required: false,
     },
     ownerId: {
-      type: String,
-      required: true,
+      type: Schema.Types.ObjectId,
+      required: false,
     },
     likes: {
       type: Array,
