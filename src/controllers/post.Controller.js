@@ -117,6 +117,12 @@ export const getMyPosts = async (req, res) => {
 
     const myPosts = await Post.find({ ownerId: userId }).exec();
 
+    if (myPosts.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "You dont have posts",
+      });
+    }
     res.status(200).json({
       success: true,
       message: "Posts retrieved succesfully",
