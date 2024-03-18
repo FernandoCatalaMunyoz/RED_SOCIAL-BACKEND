@@ -88,7 +88,7 @@ Tecnologías utilizadas:
 
 4. Añadimos los scripts al package.json
 
-- `"seeder": "ts-node ./src/database/seeders/seeders.js"`
+- `"seeder": "ts-node ./src/database/seeders/userSeeder.js"`
 
 - `"dev": "nodemon ./src/server.js"`
 
