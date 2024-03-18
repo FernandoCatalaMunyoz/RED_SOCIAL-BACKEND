@@ -9,6 +9,7 @@
     <li><a href="#stack">Stack</a></li>
     <li><a href="#instalación-en-local">Instalación</a></li>
     <li><a href="#endpoints">Endpoints</a></li>
+    <li><a href="#autor">Autor</a></li>
   </ol>
 </details>
 
@@ -205,3 +206,8 @@ Email y password de lso 3 usuarios básicos:
      url: GET https://red-social-backend-dev-mecs.1.ie-1.fl0.io/api/post/like/:id
     Auth:
       - Bearer: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMzLCJyb2xlTmFtZSI6InVzZXIiLCJpYXQiOjE3MDk1NzgzOTgsImV4cCI6MTcxMTQ1MDM5OH0.sA9fkoNp_AdCM5npU7Sv4o6V-DW9Jso9CfennkPFCQs"
+
+# Autor:
+
+    Fernando Catala Muñoz
+    Github: FernandoCatalaMunyoz
