@@ -8,6 +8,8 @@
     <li><a href="#objetivo">Objetivo</a></li>
     <li><a href="#stack">Stack</a></li>
     <li><a href="#instalación-en-local">Instalación</a></li>
+    <li><a href="#Diagrama de la base de datos">Diagrama BD</a></li>
+    <li><a href="#Usuarios y contraseñas">Usuarios  y contraseñas</a></li>
     <li><a href="#endpoints">Endpoints</a></li>
     <li><a href="#autor">Autor</a></li>
   </ol>
@@ -99,7 +101,11 @@ Tecnologías utilizadas:
 6. Arrancamos el servidor:
    `npm run dev`
 
-## Usuarios y contraseñas:
+## Diagrama de la base de datos
+
+![DIAGRAMA BD](./img/diagrama.JPG)
+
+## Usuarios y contraseñas
 
 Email y password de lso 3 usuarios básicos:
 
