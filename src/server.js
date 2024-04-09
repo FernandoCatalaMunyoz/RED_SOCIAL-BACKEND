@@ -4,8 +4,11 @@ import { dbConection } from "./database/db.js";
 
 import router from "./routes/router.js";
 
+import cors from "cors";
+
 const app = express();
 app.use(express.json()); // express.json() para  poder trabajar con el body
+app.use(cors());
 const PORT = process.env.PORT || 4001;
 
 //RUTA QUE EMVIA A ROUTES.JS
