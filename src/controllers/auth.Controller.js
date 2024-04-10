@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken";
 //Funcion Register
 export const register = async (req, res) => {
   try {
-    const name = req.body.name;
+    const firstName = req.body.firstName;
     const lastName = req.body.lastName;
     const nickName = req.body.nickName;
     const email = req.body.email;
@@ -34,7 +34,7 @@ export const register = async (req, res) => {
 
     if (!user) {
       const newUser = await User.create({
-        name: name,
+        firstName: firstName,
         lastName: lastName,
         nickName: nickName,
         email: email,
@@ -44,7 +44,7 @@ export const register = async (req, res) => {
       res.status(201).json({
         success: true,
         message: "User registered succesfully",
-        name,
+        firstName,
         nickName,
         email,
       });
@@ -52,7 +52,7 @@ export const register = async (req, res) => {
     res.status(201).json({
       success: false,
       message: "Nickname in use, select other",
-      name,
+      firstName,
       nickName,
       email,
     });
@@ -106,7 +106,10 @@ export const login = async (req, res) => {
 
     const token = jwt.sign(
       {
-        nick: user.name,
+        _id: user._id,
+        nickName: user.nickName,
+        firstName: user.firstName,
+        lastName: user.lastName,
         roleName: user.role,
         email: user.email,
       },

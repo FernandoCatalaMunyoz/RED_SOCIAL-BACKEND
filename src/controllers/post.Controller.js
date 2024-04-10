@@ -4,11 +4,15 @@ import Post from "../models/Post.js";
 export const createPost = async (req, res) => {
   try {
     const description = req.body.description;
-    const ownerId = req.tokenData.userId;
+    const title = req.body.title;
+    const ownerId = req.tokenData._id;
+    const owner = req.tokenData.nickName;
 
     const newPost = await Post.create({
       description: description,
       ownerId: ownerId,
+      title: title,
+      ownerName: owner,
     });
 
     res.status(200).json({

@@ -11,8 +11,16 @@ const PostSchema = new Schema(
       type: String,
       required: false,
     },
+    photo: {
+      type: String,
+      required: false,
+    },
     ownerId: {
       type: Schema.Types.ObjectId,
+      required: false,
+    },
+    ownerName: {
+      type: String,
       required: false,
     },
     likes: [

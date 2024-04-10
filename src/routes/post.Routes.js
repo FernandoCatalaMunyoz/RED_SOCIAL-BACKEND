@@ -17,7 +17,7 @@ postRouter.post("/", auth, createPost);
 postRouter.delete("/:id", auth, deletePostById);
 postRouter.put("/:id", auth);
 postRouter.get("/own", auth, getMyPosts);
-postRouter.get("/", auth, isSuperAdmin, getAllPosts);
+postRouter.get("/", auth, getAllPosts);
 postRouter.get("/:id", auth, isSuperAdmin, getPostById);
 postRouter.get("/user/:id", getUserPosts);
 postRouter.put("/:id", auth, updatePostById);
