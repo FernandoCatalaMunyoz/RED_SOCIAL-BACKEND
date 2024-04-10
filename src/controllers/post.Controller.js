@@ -212,7 +212,7 @@ export const getUserPosts = async (req, res) => {
 
 export const likeUnlike = async (req, res) => {
   try {
-    const userId = req.tokenData.userId;
+    const userId = req.tokenData._id;
     const postId = req.params.id;
 
     const post = await Post.findById(postId).exec();
