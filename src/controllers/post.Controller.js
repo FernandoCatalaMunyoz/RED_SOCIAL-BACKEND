@@ -33,7 +33,7 @@ export const createPost = async (req, res) => {
 
 export const deletePostById = async (req, res) => {
   try {
-    const userId = req.tokenData.userId;
+    const userId = req.tokenData._id;
     const postId = req.params.id;
 
     const findPost = await Post.findById({ _id: postId });
@@ -73,7 +73,7 @@ export const deletePostById = async (req, res) => {
 
 export const updatePostById = async (req, res) => {
   try {
-    const userId = req.tokenData.userId;
+    const userId = req.tokenData._id;
     const postId = req.params.id;
     const newDescription = req.body.description;
 
@@ -117,7 +117,7 @@ export const updatePostById = async (req, res) => {
 //Funcion ver mis Posts
 export const getMyPosts = async (req, res) => {
   try {
-    const userId = req.tokenData.userId;
+    const userId = req.tokenData._id;
 
     const myPosts = await Post.find({ ownerId: userId }).exec();
 
@@ -183,7 +183,7 @@ export const getPostById = async (req, res) => {
 // Funcion ver Post de un usuario
 export const getUserPosts = async (req, res) => {
   try {
-    const userId = req.params.id;
+    const userId = req.params._id;
     const posts = await Post.find({
       ownerId: userId,
     });
