@@ -239,7 +239,7 @@ export const likeUnlike = async (req, res) => {
       return res.status(200).json({
         succes: true,
         message: "Like agregado",
-        data: post.ownerId,
+        data: post,
       });
     }
   } catch (error) {
