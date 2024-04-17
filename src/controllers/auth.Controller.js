@@ -48,14 +48,15 @@ export const register = async (req, res) => {
         nickName,
         email,
       });
+    } else {
+      res.status(201).json({
+        success: false,
+        message: "Nickname in use, select other",
+        firstName,
+        nickName,
+        email,
+      });
     }
-    res.status(201).json({
-      success: false,
-      message: "Nickname in use, select other",
-      firstName,
-      nickName,
-      email,
-    });
   } catch (error) {
     res.status(500).json({
       success: false,

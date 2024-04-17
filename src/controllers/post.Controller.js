@@ -35,7 +35,8 @@ export const deletePostById = async (req, res) => {
   try {
     const userId = req.tokenData._id;
     const postId = req.params.id;
-
+    console.log(userId, "userId");
+    console.log(postId, "psotId");
     const findPost = await Post.findById({ _id: postId });
     if (!findPost) {
       return res.status(404).json({
@@ -55,7 +56,7 @@ export const deletePostById = async (req, res) => {
       ownerId: userId,
       _id: postId,
     });
-
+    console.log(deletedPost, "deletedpost");
     res.status(200).json({
       success: true,
       message: "Post deleted",
